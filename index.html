@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMA Region IV | Civic Health Challenge 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', Arial, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+        
+        /* COLORS: 
+           Navy: #083A51
+           Cyan: #52B8D8
+           Red:  #EB3C2C 
+           Gold: #F2C94C
+        */
+
+        /* Header */
+        .header { background: #083A51; border-radius: 16px; padding: 40px 30px; margin-bottom: 24px; text-align: center; color: #fff; background-image: linear-gradient(135deg, #083A51 0%, #0a4d6b 100%); }
+        .logo { margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        .logo img { height: 60px; width: auto; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 8px; }
+        .header h1 { font-size: 32px; font-weight: 800; margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.5px; }
+        .header .subtitle { font-size: 18px; color: #52B8D8; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .header .states { font-size: 13px; opacity: 0.8; font-style: italic; margin-top: 10px; }
+
+        /* Goal Thermometer Section */
+        .tracker-section { background: #fff; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid #EB3C2C; }
+        .tracker-title { font-size: 16px; font-weight: 700; color: #083A51; margin-bottom: 15px; text-transform: uppercase; }
+        .progress-container { background: #e9ecef; border-radius: 50px; height: 30px; width: 100%; position: relative; overflow: hidden; margin-bottom: 10px; }
+        /* CHANGE WIDTH BELOW TO UPDATE BAR */
+        .progress-bar { background: linear-gradient(90deg, #EB3C2C, #ff6b5b); height: 100%; border-radius: 50px; width: 15%; transition: width 1s ease-in-out; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; color: white; font-weight: bold; font-size: 14px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .stat-item h4 { font-size: 24px; font-weight: 800; color: #083A51; }
+        .stat-item p { font-size: 12px; color: #666; font-weight: 500; }
+
+        /* Main Grid */
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+        
+        /* Cards */
+        .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; border: 1px solid #e1e8ed; }
+        .card-header { padding: 16px 20px; font-size: 16px; font-weight: 700; color: #083A51; background: #f8f9fa; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; gap: 10px; }
+        .card-header.gold { background: #fff8e6; color: #856404; }
+        .card-body { padding: 24px; }
+
+        /* Leaderboard Table */
+        .leaderboard-table { width: 100%; border-collapse: collapse; }
+        .leaderboard-table th { text-align: left; font-size: 12px; color: #888; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        .leaderboard-table td { padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; font-weight: 500; }
+        .rank-num { font-weight: 800; color: #52B8D8; width: 30px; display: inline-block; }
+        .top-rank { color: #EB3C2C; }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; transition: 0.2s; cursor: pointer; border: none; text-align: center; }
+        .btn-cyan { background: #52B8D8; color: #fff; }
+        .btn-navy { background: #083A51; color: #fff; width: 100%; }
+        .btn-red { background: #EB3C2C; color: #fff; box-shadow: 0 4px 10px rgba(235, 60, 44, 0.3); }
+        .btn-red:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(235, 60, 44, 0.4); }
+        .btn-large { width: 100%; font-size: 18px; padding: 18px; }
+
+        /* Icons */
+        .step-icon { width: 40px; height: 40px; background: #eef7fa; color: #083A51; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-right: 15px; flex-shrink: 0; }
+        .step-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
+
+        /* Footer */
+        .footer { background: #083A51; border-radius: 16px; padding: 30px; text-align: center; margin-top: 20px; color: #fff; }
+
+        @media (max-width: 800px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 24px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <div class="subtitle">NMA Region IV</div>
+            <h1>Civic Health Challenge 2025</h1>
+            <p>Treating the root causes of health inequity through civic participation.</p>
+            <div class="states">IL • IN • MI • MN • OH • WI</div>
+        </div>
+
+        <div class="tracker-section">
+            <div class="tracker-title">Region IV Goal: 5,000 Conversations</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 15%;">15%</div> </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>750</h4> <p>Total Clicks</p>
+                </div>
+                <div class="stat-item">
+                    <h4>42</h4> <p>Active Champions</p>
+                </div>
+                <div class="stat-item">
+                    <h4>12</h4> <p>Facilities</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            
+            <div class="left-col">
+                
+                <div class="card">
+                    <div class="card-body">
+                        <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
+                            <strong>Healthcare professionals are trusted messengers.</strong> The <span style="color:#EB3C2C; font-weight:700;">Civic Health Challenge</span> is a friendly competition among Region IV states to see who can best empower their patients.
+                        </p>
+                        <p style="font-size: 14px; color: #666; font-style: italic; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                            "In 60 days, we're proving that healthcare settings can be democracy infrastructure."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">📋 How to Compete</div>
+                    <div class="card-body">
+                        
+                        <div class="step-row">
+                            <div class="step-icon">1</div>
+                            <div>
+                                <h3 style="font-size:16px; font-weight:700; color:#083A51;">Join the Challenge</h3>
+                                <p style="font-size:14px; color:#555;">Order your free badge backer. This links directly to your personal tracking dashboard.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-row">
+                            <div class="step-icon">2</div>
+                            <div>
+                                <h3 style="font-size:16px; font-weight:700; color:#083A51;">Display Your Code</h3>
+                                <p style="font-size:14px; color:#555;">Wear your badge or place a poster in your exam room. Ask patients: <em>"We have a new program to help folks get registered to vote, would you like to scan this?"</em></p>
+                            </div>
+                        </div>
+
+                        <div class="step-row">
+                            <div class="step-icon">3</div>
+                            <div>
+                                <h3 style="font-size:16px; font-weight:700; color:#083A51;">Rise in the Rankings</h3>
+                                <p style="font-size:14px; color:#555;">Every scan counts towards your State's total and your personal achievement badges.</p>
+                            </div>
+                        </div>
+
+                        <a href="https://get.vot-er.org/nma4" target="_blank" class="btn btn-red btn-large">
+                            Join the Challenge (Order Badge)
+                        </a>
+                        <p style="text-align: center; font-size: 12px; color: #888; margin-top: 10px;">Free for NMA Members • Takes 2 mins</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">💬 Voices from the Region</div>
+                    <div class="card-body">
+                        <p style="font-size: 14px; color: #555; margin-bottom: 15px;">
+                            <strong>Dr. Sarah Martinez (IL):</strong> "I put the QR code next to my hand sanitizer. Patients scan it while waiting. It's the easiest intervention I've ever implemented."
+                        </p>
+                        <p style="font-size: 14px; color: #555;">
+                            <strong>Detroit Medical Center Team (MI):</strong> "What started as a friendly competition became a powerful reminder of why we chose medicine—to serve our communities holistically."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="right-col">
+                
+                <div class="card">
+                    <div class="card-header gold">🏆 State Standings</div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="leaderboard-table" style="padding: 15px; display: block;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%">#</th>
+                                    <th style="width: 50%">State</th>
+                                    <th style="width: 35%; text-align:right;">Clicks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="rank-num top-rank">1</span></td>
+                                    <td>Illinois</td>
+                                    <td style="text-align:right;"><strong>312</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-num">2</span></td>
+                                    <td>Michigan</td>
+                                    <td style="text-align:right;"><strong>205</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-num">3</span></td>
+                                    <td>Ohio</td>
+                                    <td style="text-align:right;"><strong>118</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-num">4</span></td>
+                                    <td>Minnesota</td>
+                                    <td style="text-align:right;"><strong>84</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-num">5</span></td>
+                                    <td>Wisconsin</td>
+                                    <td style="text-align:right;"><strong>22</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-num">6</span></td>
+                                    <td>Indiana</td>
+                                    <td style="text-align:right;"><strong>9</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="padding: 15px; background: #fafafa; font-size: 11px; text-align: center; color: #888;">
+                            Updated: Jan 28, 2025
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">📥 Toolkit</div>
+                    <div class="card-body">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 12px;">
+                                <a href="#" style="text-decoration: none; color: #083A51; font-size: 14px; font-weight: 600; display: block;">
+                                    📄 Download Office Poster
+                                    <span style="display: block; font-weight: 400; font-size: 12px; color: #666;">PDF for waiting rooms</span>
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 12px;">
+                                <a href="#" style="text-decoration: none; color: #083A51; font-size: 14px; font-weight: 600; display: block;">
+                                    🗣️ Talking Points
+                                    <span style="display: block; font-weight: 400; font-size: 12px; color: #666;">How to ask patients</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <button class="btn btn-navy" style="font-size: 12px;">Access Google Drive</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="logo">
+                <img src="https://vot-er.org/wp-content/uploads/2022/02/Vot-ER-Logo-White.png" alt="Vot-ER logo" />
+            </div>
+            <p style="font-size: 14px; margin-bottom: 5px;">NMA Region IV × Vot-ER</p>
+            <p style="font-size: 12px; opacity: 0.7;">This campaign is nonpartisan. We do not support or oppose any candidate or party.</p>
+        </div>
+
+    </div>
+</body>
+</html>
